@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "fan-imagehost",
   "description": "fan-imagehost - 简单图床（无数据库 PHP 图床）",
   "private": true,

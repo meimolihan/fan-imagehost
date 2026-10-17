@@ -1,17 +1,17 @@
-修复全新安装无法登录（SHA256 密码存储）与 Docker 登录跳转（output_buffering）
+移除默认百度统计脚本，消除控制台权限策略告警
 
 ```bash
 docker pull mobufan/fan-imagehost:latest
 ```
 ```bash
-docker pull mobufan/fan-imagehost:v0.0.3
+docker pull mobufan/fan-imagehost:v0.0.4
 ```
 
 ```bash
 docker pull ghcr.io/meimolihan/fan-imagehost:latest
 ```
 ```bash
-docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.3
+docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.4
 ```
 
 ## 一键脚本安装
