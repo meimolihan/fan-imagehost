@@ -48,9 +48,11 @@ jobs:
         id: pack
         run: |
           set -e
+          OUT="${RUNNER_TEMP}/fan-imagehost.tar.gz"
           tar --exclude='./.git' --exclude='./.github' --exclude='./docs' \
               --exclude='./node_modules' --exclude='./fan-imagehost.tar.gz' \
-              -czf fan-imagehost.tar.gz .
+              -czf "$OUT" .
+          mv "$OUT" fan-imagehost.tar.gz
           ls -lh fan-imagehost.tar.gz
           # 校验包内包含可部署的核心文件
           tar -tzf fan-imagehost.tar.gz | grep -q './index.php'
