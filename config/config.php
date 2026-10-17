@@ -123,7 +123,7 @@ $config=Array
 	'chunks'=>0,
 	'NProgress_default'=>'#000000',
 	'NProgress_Progress'=>'#03aa62',
-	'footer'=>'<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?c790ac2bdc2f385757ecd0183206108d";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();</script>',
+	'footer'=>'',
 	'ad_top'=>0,
 	'ad_top_info'=>' <!--广告 按照这个范例替换相应链接，如果想多几个广告，就多复制几个-->
 <div class="col-md-12" style="text-align: center;margin:2px;"><a href="https://app.cloudcone.com.cn/?ref=3521" target="_blank"><img src="/public/images/fan-imagehost.png" /></a></div>',
