@@ -5,12 +5,14 @@
 [![PHP](https://img.shields.io/badge/php-5.6%20--%208.0-blue.svg)](http://php.net)
 [![Release](https://img.shields.io/github/v/release/meimolihan/fan-imagehost)](https://github.com/meimolihan/fan-imagehost/releases)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/meimolihan/fan-imagehost/badge)](https://cdn.jsdelivr.net/gh/meimolihan/fan-imagehost@master/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/mobufan/fan-imagehost?color=brightgreen)](https://hub.docker.com/repository/docker/mobufan/fan-imagehost)
+[![Release Pipeline](https://github.com/meimolihan/fan-imagehost/actions/workflows/release.yml/badge.svg)](https://github.com/meimolihan/fan-imagehost/actions/workflows/release.yml)
 [![License](https://img.shields.io/badge/license-GPL_V2.0-yellowgreen.svg)](https://github.com/meimolihan/fan-imagehost/blob/master/LICENSE)
 [![QQ group](https://pub.idqqimg.com/wpa/images/group.png)](https://jq.qq.com/?_wv=1027&k=jfXRHU8Y)
 
 [演示](https://png.cm/) · [手册](https://meimolihan.github.io/fan-imagehost/#/) · [社区](https://github.com/meimolihan/fan-imagehost/discussions) · [Telegram](https://t.me/Easy_Image) - 插件: [Chrome](./Chrome插件.md) · [Edge](./Edge插件.md) · [PicGo](/使用PicGo上传.md) · [ShareX](./使用ShareX上传.md) · [Docker](/docs/三方安装指南.md)
 
-目录: [安装](./安装图床.md) | [安全](./安全配置.md) | [API](./API.md) | [鉴黄](./鉴黄.md) | [升级](./图床更新升级.md) | [常见问题](./常见问题.md) | [环境/兼容](#环境要求) | [更新日志](./update.md) | [打赏开发者](./打赏开发者.md) | [鸣谢](#鸣谢) | [许可证](#开源许可) 
+目录: [安装](./安装图床.md) | [部署](#项目部署) | [安全](./安全配置.md) | [API](./API.md) | [鉴黄](./鉴黄.md) | [升级](./图床更新升级.md) | [常见问题](./常见问题.md) | [环境/兼容](#环境要求) | [更新日志](./update.md) | [打赏开发者](./打赏开发者.md) | [鸣谢](#鸣谢) | [许可证](#开源许可) 
 
 > 始于2018年7月，支持多文件上传,简单无数据库,返回图片url,markdown,bbscode,html的一款图床程序
 演示地址：[https://png.cm/](https://png.cm/) 
@@ -60,6 +62,104 @@
 
  >最低`PHP 5.6`,推荐`PHP≥7.0`及以上版本，需要PHP支持`Fileinfo,iconv,zip,mbstring,openssl`扩展,如果缺失会导致无法上传/删除图片
  文件上传视图提供文件列表管理和文件批量上传功能，允许拖拽（需要`HTML5`支持）来添加上传文件，支持上传大图片，优先使用`HTML5`旧得浏览器自动使用`Flash和Silverlight`的方式兼容
+
+## 项目部署
+
+- 默认 web 端口：**8083**
+- 首次安装默认管理员账号：**admin / admin@123**，登录后请及时修改
+- 配置与上传图片默认保存在数据目录，便于备份与迁移
+
+### docker-compose 部署（推荐）
+
+部署本项目的 [docker-compose.yml](https://github.com/meimolihan/fan-imagehost/blob/main/docker-compose.yml)，默认拉取 Docker Hub 镜像 `mobufan/fan-imagehost`。
+
+```shell
+# 1. 创建 fan-imagehost 目录
+mkdir -p /root/fan-imagehost && cd /root/fan-imagehost
+
+# 2. 下载 docker-compose.yml 文件
+wget https://raw.githubusercontent.com/meimolihan/fan-imagehost/main/docker-compose.yml
+
+# 3. 启动服务
+docker compose up -d
+```
+
+启动后访问 `http://服务器IP:8083/`，按安装向导完成初始化；数据持久化在宿主机 `./fan-imagehost` 目录。
+
+### docker 镜像
+
+```shell
+# 数据目录挂载到宿主机 /root/fan-imagehost
+docker run -d \
+  --name fan-imagehost \
+  -p 8083:80 \
+  --restart=always \
+  -v /root/fan-imagehost:/var/lib/fan-imagehost \
+  -e TZ=Asia/Shanghai \
+  mobufan/fan-imagehost:latest
+```
+
+### 一键脚本安装（systemd）
+
+适用于直接部署在 Linux 服务器（非 Docker），脚本会自动安装 PHP 运行环境与扩展、注册 systemd 服务（以 `php -S` 运行），并安装内置命令 `fan-imagehost`。
+
+```shell
+# 默认端口 8083，数据目录 /var/lib/fan-imagehost/data
+bash scripts/install.sh
+
+# 自定义端口与数据目录，免交互
+bash scripts/install.sh -p 8083 -d /var/lib/fan-imagehost/data -y
+```
+
+### 内置 CLI 管理命令
+
+安装后可直接使用 `fan-imagehost` 命令管理服务：
+
+| 命令 | 说明 |
+|------|------|
+| `fan-imagehost status` | 查看运行方式（systemd / 直接运行）、PID、监听端口、访问地址、运行时长、内存与路径 |
+| `fan-imagehost credentials` | 查看登录用户名与初始密码提示 |
+| `fan-imagehost start` / `stop` / `restart` | 启动 / 停止 / 重启 systemd 服务 |
+| `fan-imagehost uninstall [-y] [--purge\|--keep-data]` | 停止并移除服务/进程，删除程序与安装记录，可选删除数据目录 |
+| `fan-imagehost version` | 查看版本号 |
+
+### 备份与还原
+
+systemd 安装方式自带备份/还原脚本，脚本会自动读取 `/etc/fan-imagehost.conf` 中的 `APP_DIR` / `DATA_DIR` / `BACKUP_DIR`，默认备份目录为 `${APP_DIR}/backup`。
+
+```shell
+# 备份（在线打包、不停服，默认保留最近 6 份）
+bash scripts/fan-imagehost_backup.sh
+
+# 指定备份目录与保留份数（两种传参顺序均可）
+bash scripts/fan-imagehost_backup.sh /data/bak 8
+```
+
+```shell
+# 还原（默认取备份目录中最新一份；还原过程中服务会短暂停止并自动重启）
+bash scripts/fan-imagehost_recover.sh
+
+# 指定备份目录与还原文件（文件名需形如 FanImageHost-*.tar.gz）
+bash scripts/fan-imagehost_recover.sh /data/bak FanImageHost-2026-10-17_21-31-22.tar.gz
+```
+
+说明：
+
+- 备份产物为 `FanImageHost-YYYY-MM-DD_HH-MM-SS.tar.gz`，只包含数据目录（`DATA_DIR`）内容（即 `config` 配置与上传图片）。
+- 还原前请确认备份文件仍在对应 `BACKUP_DIR` 内，且数据目录路径与当前服务一致。
+- 上述命令需要在运行本图床的服务器上以 root 权限执行。
+
+### 环境变量
+
+一键脚本安装支持以下环境变量：
+
+| 变量名称 | 说明 | 默认值 |
+|---------|------|--------|
+| `FAN_IMAGEHOST_ADMIN_USER` | 初始管理员用户名 | `admin` |
+| `FAN_IMAGEHOST_ADMIN_PASSWORD` | 初始管理员密码 | `admin@123` |
+| `FAN_IMAGEHOST_DOMAIN` | 站点访问地址（写入配置） | `http://<IP>:<PORT>` |
+| `FAN_IMAGEHOST_VERSION` | 发布包版本（`latest` 或如 `v0.0.1`） | `latest` |
+| `FAN_IMAGEHOST_REPO` | 源码仓库/镜像地址（国内网络加速用） | GitHub 官方仓库 |
 
 ## 鸣谢
  

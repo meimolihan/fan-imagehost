@@ -1,0 +1,12 @@
+services:
+   fan-imagehost:
+      build: .
+      container_name: fan-imagehost
+      image: mobufan/fan-imagehost:latest
+      restart: always
+      ports:
+         - 8083:80
+      volumes:
+         - ./fan-imagehost:/var/lib/fan-imagehost
+      environment:
+         - TZ=Asia/Shanghai

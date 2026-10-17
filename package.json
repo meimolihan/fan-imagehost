@@ -1,0 +1,23 @@
+{
+  "version": "2.8.7",
+  "name": "fan-imagehost",
+  "description": "fan-imagehost - 简单图床（无数据库 PHP 图床）",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meimolihan/fan-imagehost.git"
+  },
+  "keywords": [
+    "imagehost",
+    "image-hosting",
+    "php",
+    "fan-imagehost",
+    "meimolihan"
+  ],
+  "author": "meimolihan",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/meimolihan/fan-imagehost/issues"
+  },
+  "homepage": "https://github.com/meimolihan/fan-imagehost#readme"
+}
