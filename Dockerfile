@@ -29,12 +29,18 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*
 
 # 图床运行所需的 php.ini 调整
+# 注意：官方 php 镜像默认不加载 php.ini，output_buffering 为 0，会导致 header()/setcookie()
+# 在页面已输出 HTML 后调用时报 "headers already sent"（表现：无法登录、无法跳转）。
+# 这里对齐 php.ini-production 的取值，使程序在容器内与常规 PHP-FPM/Nginx 部署行为一致。
 RUN { \
         echo 'upload_max_filesize = 64M'; \
         echo 'post_max_size = 64M'; \
         echo 'memory_limit = 512M'; \
         echo 'max_execution_time = 300'; \
         echo 'date.timezone = Asia/Shanghai'; \
+        echo 'output_buffering = 4096'; \
+        echo 'display_errors = Off'; \
+        echo 'log_errors = On'; \
     } > /usr/local/etc/php/conf.d/fan-imagehost.ini
 
 RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
