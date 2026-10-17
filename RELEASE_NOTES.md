@@ -1,17 +1,17 @@
-修复 Docker 镜像安装环境检测（upload.php 可执行权限与 /i 可写）
+修复全新安装无法登录（SHA256 密码存储）与 Docker 登录跳转（output_buffering）
 
 ```bash
 docker pull mobufan/fan-imagehost:latest
 ```
 ```bash
-docker pull mobufan/fan-imagehost:v0.0.2
+docker pull mobufan/fan-imagehost:v0.0.3
 ```
 
 ```bash
 docker pull ghcr.io/meimolihan/fan-imagehost:latest
 ```
 ```bash
-docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.2
+docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.3
 ```
 
 ## 一键脚本安装
