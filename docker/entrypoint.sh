@@ -24,6 +24,11 @@ rm -rf "${APP_DIR}/config" "${APP_DIR}/i"
 ln -sfn "${DATA_DIR}/config" "${APP_DIR}/config"
 ln -sfn "${DATA_DIR}/i" "${APP_DIR}/i"
 
+# 内核 fs.protected_symlinks：进程用户须与目录属主一致，否则无法跟随软链
+# 基础镜像 /var/www/html 为 1777(sticky)，且软链由 root 创建，故需去掉 sticky 并把软链属主改为 www-data
+chmod 755 "${APP_DIR}"
+chown -h www-data:www-data "${APP_DIR}/config" "${APP_DIR}/i"
+
 chown -R www-data:www-data "${DATA_DIR}"
 
 # 允许以参数覆盖默认命令

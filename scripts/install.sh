@@ -592,6 +592,9 @@ is_valid_src "${DEPLOY_SRC}" || error "程序文件不完整：${DEPLOY_SRC}（�
 copy_app "${DEPLOY_SRC}"
 ok "已拷贝程序文件至 ${gl_bai}${APP_DIR}${reset}"
 
+# 安装环境检测要求 app/upload.php 为 0755 可执行权限（源码/发布包可能丢失可执行位）
+[ -f "${APP_DIR}/app/upload.php" ] && chmod 755 "${APP_DIR}/app/upload.php" 2>/dev/null || true
+
 # 部署运维脚本（备份/还原/卸载/路由器/CLI）
 mkdir -p "${APP_DIR}/scripts"
 if [ "${INSTALL_METHOD}" = "source" ] && [ -d "${SRC_DIR}/scripts" ]; then

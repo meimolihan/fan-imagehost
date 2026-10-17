@@ -46,7 +46,9 @@ COPY . /var/www/html/
 
 COPY docker/entrypoint.sh /usr/local/bin/fan-imagehost-entrypoint
 RUN chmod +x /usr/local/bin/fan-imagehost-entrypoint \
-    && chown -R www-data:www-data /var/www/html
+    && chown -R www-data:www-data /var/www/html \
+    && chmod 755 /var/www/html \
+    && chmod 755 /var/www/html/app/upload.php
 
 # 数据目录（config + 上传图片），建议挂载持久化
 ENV FAN_IMAGEHOST_DATA_DIR=/var/lib/fan-imagehost
