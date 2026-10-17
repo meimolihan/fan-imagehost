@@ -687,7 +687,8 @@ require $root . '/app/function.php';
 $config['domain']   = $url;
 $config['imgurl']   = $url;
 $config['user']     = $user;
-$config['password'] = password_hash($pass, PASSWORD_DEFAULT);
+# 应用登录校验走 SHA256（app/inc.check.php / admin/_login），不可用 bcrypt
+$config['password'] = hash('sha256', $pass);
 cache_write(APP_ROOT . '/config/config.php', $config);
 file_put_contents(APP_ROOT . '/config/install.lock', '安装程序锁定文件。');
 echo "ok";
