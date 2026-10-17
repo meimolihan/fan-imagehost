@@ -1,17 +1,17 @@
-优化统计页硬盘饼图提示框：固定位置、不遮挡、不抖动
+日常更新
 
 ```bash
 docker pull mobufan/fan-imagehost:latest
 ```
 ```bash
-docker pull mobufan/fan-imagehost:v0.0.5
+docker pull mobufan/fan-imagehost:v0.0.6
 ```
 
 ```bash
 docker pull ghcr.io/meimolihan/fan-imagehost:latest
 ```
 ```bash
-docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.5
+docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.6
 ```
 
 ## 一键脚本安装
