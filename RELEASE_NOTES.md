@@ -1,17 +1,17 @@
-第一个测试版
+修复 Docker 镜像安装环境检测（upload.php 可执行权限与 /i 可写）
 
 ```bash
 docker pull mobufan/fan-imagehost:latest
 ```
 ```bash
-docker pull mobufan/fan-imagehost:v0.0.1
+docker pull mobufan/fan-imagehost:v0.0.2
 ```
 
 ```bash
 docker pull ghcr.io/meimolihan/fan-imagehost:latest
 ```
 ```bash
-docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.1
+docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.2
 ```
 
 ## 一键脚本安装
