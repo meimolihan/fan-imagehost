@@ -257,18 +257,26 @@ if (is_array($char_data)) {
         },
         tooltip: {
             trigger: 'item',
+            // confine: 提示框限制在图表区域内；position 固定为顶部居中，
+            // 避免自动轮播高亮时提示框遮挡饼图、来回抖动以及错位的箭头
+            confine: true,
+            position: function (point, params, dom, rect, size) {
+                return [(size.viewSize[0] - size.contentSize[0]) / 2, 6];
+            },
             formatter: '{a} <br/>{b} : {c} GB ({d}%)'
         },
         legend: {
-            orient: 'vertical',
-            left: 'left',
+            // 图例改为底部水平排列，腾出顶部空间给提示框
+            orient: 'horizontal',
+            bottom: 4,
+            left: 'center',
             data: ['剩余空间', '已用空间']
         },
         series: [{
             name: '硬盘使用:',
             type: 'pie',
             radius: '55%',
-            center: ['50%', '60%'],
+            center: ['50%', '55%'],
             data: [{
                     value: <?php echo  round(disk_free_space('.') / 1024 / 1024 / 1024, 2); ?>,
                     name: '剩余空间',
