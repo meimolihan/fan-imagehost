@@ -1,17 +1,17 @@
-移除默认百度统计脚本，消除控制台权限策略告警
+优化统计页硬盘饼图提示框：固定位置、不遮挡、不抖动
 
 ```bash
 docker pull mobufan/fan-imagehost:latest
 ```
 ```bash
-docker pull mobufan/fan-imagehost:v0.0.4
+docker pull mobufan/fan-imagehost:v0.0.5
 ```
 
 ```bash
 docker pull ghcr.io/meimolihan/fan-imagehost:latest
 ```
 ```bash
-docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.4
+docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.5
 ```
 
 ## 一键脚本安装
