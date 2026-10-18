@@ -7,6 +7,7 @@ require_once __DIR__ . '/../app/function.php';
 // 是否管理员登录
 if(!is_who_login('admin')){
     require_once APP_ROOT.'/app/header.php';
+$isIndex = false;
     echo '<div class="alert alert-danger">还没有登陆哦~~</div>';
     header("refresh:3;url=" . $config['domain'] . "/admin/index.php");
     require_once APP_ROOT.'/app/footer.php';

@@ -2,6 +2,7 @@
 
 /** 广场页面 */
 require_once __DIR__ . '/header.php';
+$isIndex = false;
 
 /** 顶部广告 */
 if ($config['ad_top']) echo $config['ad_top_info'];

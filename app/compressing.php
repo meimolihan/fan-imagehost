@@ -4,6 +4,7 @@
  * 压缩状态页面
  */
 require_once 'header.php';
+$isIndex = false;
 require_once APP_ROOT . '/app/compress/function.compress.php';
 
 // 检测登录

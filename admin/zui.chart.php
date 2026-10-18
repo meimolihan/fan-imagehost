@@ -3,6 +3,7 @@
  * 统计中心
  */
 require_once '../app/header.php';
+$isIndex = false;
 require_once APP_ROOT . '/app/chart.php';
 
 // 检测登录和是否开启统计

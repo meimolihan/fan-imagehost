@@ -24,10 +24,65 @@
     <script type="application/javascript" src="<?php static_cdn(); ?>/public/static/zui/lib/ieonly/respond.js"></script>
     <script type="application/javascript" src="<?php static_cdn(); ?>/public/static/zui/lib/ieonly/excanvas.js"></script>
   	<![endif]-->
-	<?php /** 页头自定义代码 */ echo $config['customize']; ?>
+ 	<?php /** 页头自定义代码 */ echo $config['customize']; ?>
+	<style>
+		/* Splash screen */
+		#splash-screen {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #ffffff;
+			z-index: 9999;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: opacity 0.5s ease;
+			pointer-events: none;
+		}
+
+		#splash-screen.splash-hidden {
+			opacity: 0;
+		}
+
+		#splash-screen img {
+			width: 120px;
+			height: 120px;
+			animation: splash-pulse 1.2s ease-in-out infinite;
+			user-select: none;
+			-webkit-user-drag: none;
+		}
+
+		@keyframes splash-pulse {
+			0% {
+				transform: scale(0.9);
+				opacity: 0.8;
+			}
+			50% {
+				transform: scale(1);
+				opacity: 1;
+			}
+			100% {
+				transform: scale(0.9);
+				opacity: 0.8;
+			}
+		}
+
+		@media (prefers-color-scheme: dark) {
+			#splash-screen {
+				background: #1f1f1f;
+			}
+		}
+	</style>
 </head>
 
 <body class="container">
+	<?php if (isset($isIndex) && $isIndex): ?>
+	<div id="splash-screen">
+		<img src="<?php static_cdn(); ?>/public/images/fan-imagehost.svg" alt="fan-imagehost">
+	</div>
+	<?php endif; ?>
 	<div class="page-header">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-fan-imagehost">

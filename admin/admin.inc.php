@@ -5,6 +5,7 @@
  */
 
 require_once __DIR__ . '/../app/header.php';
+$isIndex = false;
 require_once APP_ROOT . '/config/api_key.php';
 require_once APP_ROOT . '/config/config.guest.php';
 

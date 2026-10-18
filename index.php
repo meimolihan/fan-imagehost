@@ -1,4 +1,5 @@
 <?php
+$isIndex = true;
 require_once __DIR__ . '/app/header.php';
 /** 顶部广告 */
 if ($config['ad_top']) echo $config['ad_top_info'];

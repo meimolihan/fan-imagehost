@@ -11,6 +11,7 @@ require_once __DIR__ . '/../config/config.php';
 // 开启tinyfilemanager文件管理
 if (!$config['file_manage']) {
     require_once APP_ROOT . '/app/header.php';
+$isIndex = false;
     echo '<h4 class="alert alert-danger">文件管理已关闭~~</h4>';
     header("refresh:3;url=" . $config['domain'] . '?manag-closed');
     exit(require_once APP_ROOT . '/app/footer.php');

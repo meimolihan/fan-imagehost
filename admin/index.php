@@ -4,6 +4,7 @@
  */
 require_once __DIR__ . '/../app/function.php';
 require_once APP_ROOT . '/app/header.php';
+$isIndex = false;
 require_once APP_ROOT . '/config/config.guest.php';
 
 // 退出

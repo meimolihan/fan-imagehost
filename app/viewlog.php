@@ -25,6 +25,7 @@ if (isset($_GET['login_log'])) {
 
 // 上传日志
 require_once APP_ROOT . '/app/header.php';
+$isIndex = false;
 
 if (isset($_POST['logDate'])) {
     $logFile = APP_ROOT . '/admin/logs/upload/' . $_POST['logDate'] . '.php';

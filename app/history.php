@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . "/header.php";
+$isIndex = false;
 ?>
 <link rel="stylesheet" href="<?php static_cdn(); ?>/public/static/fan-imagehost.css">
 <link rel="stylesheet" href="<?php static_cdn(); ?>/public/static/viewjs/viewer.min.css">
