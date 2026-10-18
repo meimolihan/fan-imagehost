@@ -13,6 +13,7 @@
 	<meta name="keywords" content="<?php echo $config['keywords']; ?>" />
 	<meta name="description" content="<?php echo $config['description']; ?>" />
 	<link rel="shortcut icon" type="image/x-icon" href="<?php static_cdn(); ?>/favicon.ico" />
+	<link rel="apple-touch-icon" href="<?php static_cdn(); ?>/apple-touch-icon.png" />
 	<link rel="stylesheet" href="<?php static_cdn(); ?>/public/static/zui/css/zui.min.css">
 	<link rel="stylesheet" href="<?php static_cdn(); ?>/public/static/nprogress/nprogress.min.css">
 	<link rel="stylesheet" href="<?php static_cdn(); ?>/public/static/zui/theme/zui-theme-<?php echo $config['theme']; ?>.css">

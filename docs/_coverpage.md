@@ -1,6 +1,6 @@
 <!-- 封面 -->
 
-<!-- ![logo](../public/images/image_icon_153794.png) -->
+<!-- ![logo](../public/images/fan-imagehost.svg) -->
 # fan-imagehost
 
 > 简单图床 - 无数据库的图床程序
