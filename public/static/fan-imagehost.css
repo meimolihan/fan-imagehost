@@ -65,3 +65,143 @@
     .bottom-bar:hover {
         opacity: 1;
     }
+
+    /* ===== 亮色主题 Soft-UI 优化（追加覆盖，不改动既有声明/布局） ===== */
+
+    /* 修复问题#1：卡片阴影过重与边框、圆角不统一 → Soft-UI 柔质轻投影 + 极淡内分隔 */
+    .card {
+        box-shadow: 0 6px 18px -8px rgba(15, 30, 60, 0.18), 0 2px 6px -3px rgba(15, 30, 60, 0.10);
+        border: 1px solid rgba(15, 30, 60, 0.06);
+        border-radius: 8px;
+        background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+        transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 10px 26px -10px rgba(15, 30, 60, 0.22), 0 3px 8px -4px rgba(15, 30, 60, 0.12);
+        transform: translateY(-2px);
+    }
+
+    /* 修复问题#2：图片过渡时长超规范且移动端 hover 残留 → 统一 0.25s 并限制放大倍率、触屏禁用 */
+    img {
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    img:hover {
+        transform: scale(1.06);
+    }
+
+    @media (hover: none) {
+        img:hover {
+            transform: none;
+        }
+    }
+
+    /* 修复问题#3：底栏遮罩为纯黑半透明 → 冷调柔化 + 顶部圆角与卡片对齐 */
+    .bottom-bar {
+        background: linear-gradient(180deg, rgba(20, 30, 48, 0.30) 0%, rgba(20, 30, 48, 0.55) 100%);
+        -webkit-backdrop-filter: blur(3px) saturate(120%);
+        backdrop-filter: blur(3px) saturate(120%);
+        border-radius: 0 0 8px 8px;
+    }
+
+    /* 修复问题#4：热区低于 44px、按钮圆角与卡片不统一 → 统一圆角 + 触屏放大热区 */
+    .btn,
+    .btn-mini,
+    .btn-sm,
+    .btn-xs {
+        border-radius: 6px;
+    }
+
+    @media (pointer: coarse) {
+
+        .btn,
+        .btn-mini,
+        .btn-sm,
+        .btn-xs,
+        .nav-pills > li > a,
+        .file-list .uploader-file,
+        .icon {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    /* 修复问题#5：表单控件灰底、直角 → 柔化底色 + 统一圆角，聚焦态柔和描边 */
+    .form-control,
+    .form-control.input-sm {
+        background: #f4f7fb;
+        border: 1px solid rgba(15, 30, 60, 0.10);
+        border-radius: 6px;
+        color: #2b3444;
+        box-shadow: inset 0 1px 2px rgba(15, 30, 60, 0.04);
+        transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    .form-control:focus,
+    .form-control.input-sm:focus {
+        background: #ffffff;
+        border-color: rgba(50, 128, 252, 0.55);
+        box-shadow: 0 0 0 3px rgba(50, 128, 252, 0.14);
+    }
+
+    /* 修复问题#6：页脚死白透底、文字对比度偏低 → 柔化背景 + 提升文字灰度 */
+    footer.navbar-fixed-bottom {
+        background: rgba(246, 249, 253, 0.90) !important;
+        color: #55617a;
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+    }
+
+    footer.navbar-fixed-bottom a,
+    footer.navbar-fixed-bottom .text-muted {
+        color: #55617a;
+    }
+
+    footer.navbar-fixed-bottom a:hover {
+        color: #3280fc;
+    }
+
+    /* 修复问题#7：硬实线分割 → 极淡色差分割线 */
+    footer hr,
+    hr {
+        border-top-color: rgba(15, 30, 60, 0.08);
+    }
+
+    /* 修复问题#8：导航项无边界、激活态纯色块 → 柔和悬浮底 + 激活态渐变柔光 */
+    .nav-pills > li > a {
+        border-radius: 20px;
+        transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nav-pills > li > a:hover {
+        background: rgba(50, 128, 252, 0.08);
+    }
+
+    .nav-pills > li.active > a {
+        background: linear-gradient(180deg, #4a8dff 0%, #3280fc 100%);
+        box-shadow: 0 4px 12px -4px rgba(50, 128, 252, 0.55), 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+    }
+
+    /* 修复问题#9：标签呈现偏幽灵态 → 补齐柔和实色底与统一圆角 */
+    .label-primary {
+        background: rgba(50, 128, 252, 0.12);
+        color: #2266d6;
+        border: 1px solid rgba(50, 128, 252, 0.22);
+        border-radius: 9px;
+    }
+
+    /* 统一过渡动画：0.2s–0.3s ease（避免自定义缓动曲线） */
+    .card,
+    .card *,
+    .btn,
+    .form-control,
+    .nav-pills > li > a,
+    a,
+    .icon {
+        transition-duration: 0.25s;
+        transition-timing-function: ease;
+    }
