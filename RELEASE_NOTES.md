@@ -1,17 +1,17 @@
-更新图标
+美化前端UI
 
 ```bash
 docker pull mobufan/fan-imagehost:latest
 ```
 ```bash
-docker pull mobufan/fan-imagehost:v0.0.8
+docker pull mobufan/fan-imagehost:v0.0.10
 ```
 
 ```bash
 docker pull ghcr.io/meimolihan/fan-imagehost:latest
 ```
 ```bash
-docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.8
+docker pull ghcr.io/meimolihan/fan-imagehost:v0.0.10
 ```
 
 ## 一键脚本安装
